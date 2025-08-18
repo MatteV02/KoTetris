@@ -9,13 +9,12 @@ import org.mattev02.kotetris.utils.Point
  * @property topLeft top left point of the abstract tetromino
  * @property bottomRight bottom right point of the abstract tetromino
  * @property orientation starting orientation of the tetromino
- * @throws IllegalArgumentException when `topLeft` or `bottomRight` points mismatch
+ * @throws IllegalArgumentException when `topLeft` or `bottomRight` points mismatch or point colors mismatch
  */
 abstract class AbstractTetromino(
     topLeft: Point,
     bottomRight: Point,
-    orientation: Orientation,
-    override val color: Color
+    orientation: Orientation
 ) : Tetromino {
     var topLeft = topLeft
         protected set
@@ -26,8 +25,13 @@ abstract class AbstractTetromino(
     var orientation = orientation
         protected set
 
+    override val color: Color = topLeft.color
+
     init {
         if (topLeft.x >= bottomRight.x || bottomRight.y >= topLeft.y) {
+            throw IllegalArgumentException()
+        }
+        if (topLeft.color != bottomRight.color) {
             throw IllegalArgumentException()
         }
     }

@@ -13,10 +13,9 @@ import org.mattev02.kotetris.utils.Point
 class LTetromino(
     topLeft: Point,
     bottomRight: Point,
-    orientation: Orientation,
-    color: Color
+    orientation: Orientation
 ) :
-    AbstractTetromino(topLeft, bottomRight, orientation, color) {
+    AbstractTetromino(topLeft, bottomRight, orientation) {
     override fun getOccupiedPoints(): Set<Point> = when(orientation) {
         Orientation.UP -> UPOccupiedPoints()
         Orientation.DOWN -> DOWNOccupiedPoints()
@@ -31,11 +30,11 @@ class LTetromino(
             if (iy == bottomRight.y) {
                 // fill the line
                 for (ix in topLeft.x..bottomRight.x) {
-                    occupiedPointsSet.add(Point(ix, iy))
+                    occupiedPointsSet.add(Point(ix, iy, color))
                 }
             } else {
                 // align left
-                occupiedPointsSet.add(Point(topLeft.x, iy))
+                occupiedPointsSet.add(Point(topLeft.x, iy, color))
             }
         }
 
@@ -48,10 +47,10 @@ class LTetromino(
         for (iy in bottomRight.y..topLeft.y) {
             if (iy == topLeft.y) {
                 for (ix in topLeft.x..bottomRight.x) {
-                    occupiedPointsSet.add(Point(ix, iy))
+                    occupiedPointsSet.add(Point(ix, iy, color))
                 }
             } else {
-                occupiedPointsSet.add(Point(bottomRight.x, iy))
+                occupiedPointsSet.add(Point(bottomRight.x, iy, color))
             }
         }
 
@@ -64,10 +63,10 @@ class LTetromino(
         for (ix in topLeft.x..bottomRight.x) {
             if (ix == topLeft.x) {
                 for (iy in bottomRight.y..topLeft.y) {
-                    occupiedPointsSet.add(Point(ix, iy))
+                    occupiedPointsSet.add(Point(ix, iy, color))
                 }
             } else {
-                occupiedPointsSet.add(Point(ix, topLeft.y))
+                occupiedPointsSet.add(Point(ix, topLeft.y, color))
             }
         }
 
@@ -80,10 +79,10 @@ class LTetromino(
         for (ix in topLeft.x..bottomRight.x) {
             if (ix == bottomRight.x) {
                 for (iy in bottomRight.y..topLeft.y) {
-                    occupiedPointsSet.add(Point(ix, iy))
+                    occupiedPointsSet.add(Point(ix, iy, color))
                 }
             } else {
-                occupiedPointsSet.add(Point(ix, bottomRight.y))
+                occupiedPointsSet.add(Point(ix, bottomRight.y, color))
             }
         }
 

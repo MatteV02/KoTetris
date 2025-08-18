@@ -13,15 +13,14 @@ import org.mattev02.kotetris.utils.Point
 class RectangularTetromino(
     topLeft: Point,
     bottomRight: Point,
-    orientation: Orientation,
-    color: Color
-) : AbstractTetromino(topLeft, bottomRight, orientation, color) {
+    orientation: Orientation
+) : AbstractTetromino(topLeft, bottomRight, orientation) {
     override fun getOccupiedPoints(): Set<Point> {
         val occupiedPointsSet = mutableSetOf<Point>()
 
         for (ix in topLeft.x..bottomRight.x) {
             for (iy in bottomRight.y..topLeft.y) {
-                occupiedPointsSet.add(Point(ix, iy))
+                occupiedPointsSet.add(Point(ix, iy, color))
             }
         }
 
