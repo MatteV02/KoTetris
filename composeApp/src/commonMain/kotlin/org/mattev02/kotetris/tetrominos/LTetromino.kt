@@ -1,5 +1,6 @@
 package org.mattev02.kotetris.tetrominos
 
+import androidx.compose.ui.graphics.Color
 import org.mattev02.kotetris.utils.Orientation
 import org.mattev02.kotetris.utils.Point
 
@@ -9,8 +10,13 @@ import org.mattev02.kotetris.utils.Point
  * @param bottomRight bottom right corner of the L-tetromino bounding box
  * @param orientation starting orientation of the L-tetromino
  */
-class LTetromino(topLeft: Point, bottomRight: Point, orientation: Orientation) :
-    AbstractTetromino(topLeft, bottomRight, orientation) {
+class LTetromino(
+    topLeft: Point,
+    bottomRight: Point,
+    orientation: Orientation,
+    color: Color
+) :
+    AbstractTetromino(topLeft, bottomRight, orientation, color) {
     override fun getOccupiedPoints(): Set<Point> = when(orientation) {
         Orientation.UP -> UPOccupiedPoints()
         Orientation.DOWN -> DOWNOccupiedPoints()

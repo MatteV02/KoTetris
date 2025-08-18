@@ -1,5 +1,6 @@
 package org.mattev02.kotetris.tetrominos
 
+import androidx.compose.ui.graphics.Color
 import org.mattev02.kotetris.utils.Point
 
 interface Tetromino {
@@ -26,4 +27,6 @@ interface Tetromino {
      * Rotate anticlockwise the tetromino
      */
     fun rotateAnticlockwise()
+
+    val color: Color
 }

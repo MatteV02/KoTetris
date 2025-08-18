@@ -1,5 +1,6 @@
 package org.mattev02.kotetris.tetrominos
 
+import androidx.compose.ui.graphics.Color
 import org.mattev02.kotetris.utils.Orientation
 import org.mattev02.kotetris.utils.Point
 
@@ -10,25 +11,26 @@ import org.mattev02.kotetris.utils.Point
  * @property orientation starting orientation of the tetromino
  * @throws IllegalArgumentException when `topLeft` or `bottomRight` points mismatch
  */
-abstract class AbstractTetromino: Tetromino {
-    constructor(topLeft: Point, bottomRight: Point, orientation: Orientation) {
+abstract class AbstractTetromino(
+    topLeft: Point,
+    bottomRight: Point,
+    orientation: Orientation,
+    override val color: Color
+) : Tetromino {
+    var topLeft = topLeft
+        protected set
+
+    var bottomRight = bottomRight
+        protected set
+
+    var orientation = orientation
+        protected set
+
+    init {
         if (topLeft.x >= bottomRight.x || bottomRight.y >= topLeft.y) {
             throw IllegalArgumentException()
         }
-
-        this.topLeft = topLeft
-        this.bottomRight = bottomRight
-        this.orientation = orientation
     }
-
-    var topLeft = Point(0, 0)
-        protected set
-
-    var bottomRight = Point(0, 0)
-        protected set
-
-    var orientation = Orientation.UP
-        protected set
 
     override fun move(dx: Int, dy: Int) {
         topLeft.x += dx

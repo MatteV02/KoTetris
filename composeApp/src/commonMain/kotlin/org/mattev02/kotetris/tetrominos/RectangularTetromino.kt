@@ -1,5 +1,6 @@
 package org.mattev02.kotetris.tetrominos
 
+import androidx.compose.ui.graphics.Color
 import org.mattev02.kotetris.utils.Orientation
 import org.mattev02.kotetris.utils.Point
 
@@ -12,8 +13,9 @@ import org.mattev02.kotetris.utils.Point
 class RectangularTetromino(
     topLeft: Point,
     bottomRight: Point,
-    orientation: Orientation
-) : AbstractTetromino(topLeft, bottomRight, orientation) {
+    orientation: Orientation,
+    color: Color
+) : AbstractTetromino(topLeft, bottomRight, orientation, color) {
     override fun getOccupiedPoints(): Set<Point> {
         val occupiedPointsSet = mutableSetOf<Point>()
 
